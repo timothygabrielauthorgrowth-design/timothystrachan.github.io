@@ -1,0 +1,967 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Timothy Gabriel and Sue Strachan — a small, independent book marketing practice focused on thoughtful author outreach and lasting book visibility."
+  />
+  <title>Gabriel & Strachan — Book Marketing</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap');
+
+    :root {
+      --ink: #17252a;
+      --ink-soft: #405057;
+      --paper: #f4f1e8;
+      --paper-deep: #e7e2d4;
+      --green: #294b45;
+      --green-dark: #193631;
+      --coral: #c9634c;
+      --line: rgba(23, 37, 42, 0.17);
+      --white: #faf9f4;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
+
+    /* ---------------- NAV ---------------- */
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Libre Baskerville", serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .mark {
+      width: 31px;
+      height: 38px;
+      position: relative;
+      border: 2px solid var(--green);
+      transform: rotate(-5deg);
+    }
+
+    .mark::before,
+    .mark::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      bottom: 5px;
+      width: 1px;
+      background: var(--green);
+    }
+
+    .mark::before {
+      left: 8px;
+    }
+
+    .mark::after {
+      right: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .nav-links a {
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--coral);
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      min-height: 720px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 80px;
+      padding: 100px 0 110px;
+    }
+
+    .eyebrow {
+      color: var(--coral);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Libre Baskerville", serif;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+    }
+
+    h1 {
+      font-size: clamp(44px, 6vw, 78px);
+      line-height: 1.08;
+      max-width: 780px;
+    }
+
+    .hero-copy {
+      margin-top: 30px;
+      max-width: 600px;
+      font-size: 18px;
+      color: var(--ink-soft);
+    }
+
+    .hero-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 34px;
+      color: var(--green);
+      font-weight: 600;
+      border-bottom: 1px solid var(--green);
+      padding-bottom: 4px;
+    }
+
+    .hero-email:hover {
+      color: var(--coral);
+      border-color: var(--coral);
+    }
+
+    /*
+      Visual risk:
+      The hero uses an oversized "edited manuscript" sheet rather
+      than stock photography or generic marketing graphics.
+    */
+
+    .manuscript {
+      position: relative;
+      width: min(100%, 410px);
+      height: 520px;
+      margin-left: auto;
+      background: var(--white);
+      box-shadow: 18px 22px 0 rgba(41, 75, 69, .12);
+      transform: rotate(3.5deg);
+      padding: 56px 46px;
+      overflow: hidden;
+    }
+
+    .manuscript::before {
+      content: "READ";
+      position: absolute;
+      right: -35px;
+      top: 80px;
+      color: rgba(201, 99, 76, .08);
+      font-family: "Libre Baskerville", serif;
+      font-size: 110px;
+      transform: rotate(90deg);
+    }
+
+    .manuscript-top {
+      font-family: "Libre Baskerville", serif;
+      font-size: 14px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 26px;
+    }
+
+    .fake-line {
+      height: 1px;
+      background: rgba(23, 37, 42, .23);
+      margin: 13px 0;
+      width: 100%;
+    }
+
+    .fake-line.short {
+      width: 63%;
+    }
+
+    .fake-line.medium {
+      width: 82%;
+    }
+
+    .editor-note {
+      position: absolute;
+      right: 34px;
+      bottom: 60px;
+      width: 135px;
+      color: var(--coral);
+      font-family: "Libre Baskerville", serif;
+      font-size: 14px;
+      line-height: 1.4;
+      transform: rotate(-5deg);
+    }
+
+    .editor-note::before {
+      content: "↗";
+      font-family: "DM Sans", sans-serif;
+      display: block;
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+
+    section {
+      border-top: 1px solid var(--line);
+    }
+
+    .section-inner {
+      padding: 110px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--coral);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 80px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.15;
+    }
+
+    .large-copy {
+      font-family: "Libre Baskerville", serif;
+      font-size: clamp(21px, 2.2vw, 30px);
+      line-height: 1.55;
+      max-width: 760px;
+    }
+
+    .muted {
+      color: var(--ink-soft);
+    }
+
+    /* ---------------- PROCESS ---------------- */
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 65px;
+      border-top: 1px solid var(--line);
+    }
+
+    .process-card {
+      padding: 35px 35px 35px 0;
+      border-right: 1px solid var(--line);
+    }
+
+    .process-card:not(:first-child) {
+      padding-left: 35px;
+    }
+
+    .process-card:last-child {
+      border-right: none;
+    }
+
+    .number {
+      font-family: "Libre Baskerville", serif;
+      font-size: 14px;
+      color: var(--coral);
+      margin-bottom: 45px;
+    }
+
+    .process-card h3 {
+      font-size: 25px;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    .process-card p {
+      color: var(--ink-soft);
+      max-width: 310px;
+      font-size: 15px;
+    }
+
+    /* ---------------- PEOPLE ---------------- */
+
+    .people-section {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .people-section .section-label {
+      color: #d58b78;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 65px;
+      border-top: 1px solid rgba(250,249,244,.25);
+    }
+
+    .person {
+      padding: 38px 45px 15px 0;
+      border-right: 1px solid rgba(250,249,244,.25);
+    }
+
+    .person:nth-child(2) {
+      padding-left: 45px;
+      border-right: none;
+    }
+
+    .person h3 {
+      font-size: 31px;
+      margin-bottom: 8px;
+    }
+
+    .role {
+      color: #d6ddd8;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 25px;
+    }
+
+    .person p {
+      color: #d6ddd8;
+      max-width: 440px;
+      margin-bottom: 25px;
+    }
+
+    .email-link {
+      display: inline-block;
+      color: var(--white);
+      border-bottom: 1px solid rgba(250,249,244,.55);
+      padding-bottom: 3px;
+      font-size: 14px;
+    }
+
+    .email-link:hover {
+      color: #f0b2a2;
+      border-color: #f0b2a2;
+    }
+
+    /* ---------------- FIT ---------------- */
+
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      margin-top: 65px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .fit-card {
+      background: var(--paper);
+      padding: 45px;
+    }
+
+    .fit-card h3 {
+      font-size: 27px;
+      margin-bottom: 25px;
+    }
+
+    .fit-card ul {
+      list-style: none;
+    }
+
+    .fit-card li {
+      position: relative;
+      padding: 13px 0 13px 28px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+    }
+
+    .fit-card li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--coral);
+    }
+
+    /* ---------------- HONESTY ---------------- */
+
+    .small-practice {
+      background: var(--paper-deep);
+    }
+
+    .honesty {
+      max-width: 850px;
+    }
+
+    .honesty p {
+      margin-top: 28px;
+      color: var(--ink-soft);
+      font-size: 17px;
+      max-width: 730px;
+    }
+
+    /* ---------------- CLOSING ---------------- */
+
+    .closing {
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+    }
+
+    .closing-content {
+      max-width: 850px;
+    }
+
+    .closing h2 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.1;
+    }
+
+    .closing-copy {
+      margin-top: 30px;
+      font-size: 18px;
+      color: var(--ink-soft);
+      max-width: 650px;
+    }
+
+    .closing-emails {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 35px;
+      margin-top: 35px;
+    }
+
+    .closing-emails a {
+      color: var(--green);
+      font-weight: 600;
+      border-bottom: 1px solid var(--green);
+      padding-bottom: 4px;
+    }
+
+    .closing-emails a:hover {
+      color: var(--coral);
+      border-color: var(--coral);
+    }
+
+    .personal-note {
+      margin-top: 55px;
+      font-family: "Libre Baskerville", serif;
+      font-size: 17px;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        min-height: auto;
+        padding: 75px 0 90px;
+      }
+
+      .manuscript {
+        margin: 0 auto;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-card,
+      .process-card:not(:first-child) {
+        padding: 30px 0;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .process-card:last-child {
+        border-bottom: none;
+      }
+
+      .number {
+        margin-bottom: 25px;
+      }
+
+      .people-grid,
+      .fit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .person,
+      .person:nth-child(2) {
+        padding: 30px 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(250,249,244,.25);
+      }
+
+      .person:last-child {
+        border-bottom: none;
+      }
+
+      .fit-card {
+        padding: 35px 28px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      header {
+        padding: 20px 0;
+      }
+
+      .hero {
+        padding: 60px 0 75px;
+      }
+
+      .manuscript {
+        width: 90%;
+        height: 450px;
+        padding: 45px 32px;
+      }
+
+      .section-inner {
+        padding: 75px 0;
+      }
+
+      .closing {
+        min-height: 500px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="page">
+      <nav>
+        <a href="#" class="wordmark" aria-label="Gabriel and Strachan home">
+          <span class="mark" aria-hidden="true"></span>
+          Gabriel &amp; Strachan
+        </a>
+
+        <div class="nav-links">
+          <a href="#process">Process</a>
+          <a href="#people">People</a>
+          <a href="#fit">Fit</a>
+          <a href="#contact">Email</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section>
+      <div class="page">
+        <div class="hero">
+
+          <div>
+            <div class="eyebrow">Independent book marketing</div>
+
+            <h1>
+              We read the book before we talk about marketing it.
+            </h1>
+
+            <p class="hero-copy">
+              Timothy Gabriel and Sue Strachan work with authors who want
+              thoughtful, sustained help with getting a good book in front
+              of more of the right readers.
+            </p>
+
+            <a class="hero-email" href="mailto:YOUR_EMAIL_HERE">
+              Email us about your book →
+            </a>
+          </div>
+
+          <div class="manuscript" aria-hidden="true">
+            <div class="manuscript-top">
+              Editorial notes / manuscript
+            </div>
+
+            <div class="fake-line"></div>
+            <div class="fake-line medium"></div>
+            <div class="fake-line"></div>
+            <div class="fake-line short"></div>
+
+            <div style="height: 25px;"></div>
+
+            <div class="fake-line medium"></div>
+            <div class="fake-line"></div>
+            <div class="fake-line short"></div>
+            <div class="fake-line"></div>
+            <div class="fake-line medium"></div>
+
+            <div style="height: 30px;"></div>
+
+            <div class="fake-line"></div>
+            <div class="fake-line short"></div>
+            <div class="fake-line medium"></div>
+
+            <div class="editor-note">
+              Start with the actual book.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BELIEF -->
+    <section>
+      <div class="page">
+        <div class="section-inner">
+          <div class="intro-grid">
+            <div>
+              <div class="section-label">The starting point</div>
+              <h2>Specific attention<br />comes first.</h2>
+            </div>
+
+            <div>
+              <p class="large-copy">
+                We don't begin with generic praise or a list of services.
+                We begin by understanding the book, the author behind it,
+                and where the distance between the book's quality and its
+                visibility actually sits.
+              </p>
+
+              <p class="muted" style="margin-top: 30px; max-width: 680px;">
+                That means reading closely, noticing what is distinctive,
+                and being honest about what could be working better.
+                The marketing follows from that understanding.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <div class="page">
+        <div class="section-inner">
+          <div class="section-label">How we work</div>
+          <h2>Three steps, without<br />the theatre.</h2>
+
+          <div class="process-grid">
+
+            <article class="process-card">
+              <div class="number">01</div>
+              <h3>Read closely.</h3>
+              <p>
+                We spend time with the book before suggesting anything.
+                We look at its subject, voice, audience and the details
+                that make it itself.
+              </p>
+            </article>
+
+            <article class="process-card">
+              <div class="number">02</div>
+              <h3>Find the real gap.</h3>
+              <p>
+                We work out where the problem actually is — whether that
+                is discoverability, positioning, reaching the right
+                readers, or something more specific.
+              </p>
+            </article>
+
+            <article class="process-card">
+              <div class="number">03</div>
+              <h3>Build momentum.</h3>
+              <p>
+                The aim is not a brief spike followed by silence. We focus
+                on useful, repeatable work that can give a book a longer
+                life and a clearer path to its readers.
+              </p>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEOPLE -->
+    <section id="people" class="people-section">
+      <div class="page">
+        <div class="section-inner">
+          <div class="section-label">The people behind the emails</div>
+          <h2>
+            Two people, working<br />directly with authors.
+          </h2>
+
+          <div class="people-grid">
+
+            <article class="person">
+              <h3>Timothy Gabriel</h3>
+              <div class="role">Book Marketing</div>
+              <p>
+                Timothy works on the marketing side of the practice,
+                looking at how a book can be positioned, discovered and
+                connected with the readers most likely to care about it.
+              </p>
+              <!-- Replace with Timothy's real email address -->
+              <a
+                class="email-link"
+                href="mailto:TIMOTHY_EMAIL_HERE"
+              >
+                TIMOTHY_EMAIL_HERE
+              </a>
+            </article>
+
+            <article class="person">
+              <h3>Sue Strachan</h3>
+              <div class="role">Author Outreach &amp; Marketing</div>
+              <p>
+                Sue works directly with authors and helps shape the
+                outreach and marketing work around each individual book,
+                keeping the conversation specific rather than scripted.
+              </p>
+              <!-- Replace with Sue's real email address -->
+              <a
+                class="email-link"
+                href="mailto:SUE_EMAIL_HERE"
+              >
+                SUE_EMAIL_HERE
+              </a>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIT -->
+    <section id="fit">
+      <div class="page">
+        <div class="section-inner">
+          <div class="section-label">A useful distinction</div>
+          <h2>Who this is — and isn't — for.</h2>
+
+          <div class="fit-grid">
+
+            <div class="fit-card">
+              <h3>A good fit if...</h3>
+              <ul>
+                <li>You have a finished or published book you care about.</li>
+                <li>You want marketing grounded in the actual book.</li>
+                <li>You are interested in building visibility over time.</li>
+                <li>You value a direct, personal working relationship.</li>
+                <li>You are open to hearing what may need to change.</li>
+              </ul>
+            </div>
+
+            <div class="fit-card">
+              <h3>Probably not a fit if...</h3>
+              <ul>
+                <li>You are looking for guaranteed sales or rankings.</li>
+                <li>You want a one-week publicity shortcut.</li>
+                <li>You want a generic package without discussion.</li>
+                <li>You are primarily looking for paid advertising alone.</li>
+                <li>You don't want anyone looking closely at the book first.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HONEST PRACTICE -->
+    <section class="small-practice">
+      <div class="page">
+        <div class="section-inner">
+          <div class="honesty">
+            <div class="section-label">A note about us</div>
+            <h2>We are a small practice.<br />That is intentional.</h2>
+
+            <p>
+              Gabriel &amp; Strachan is a real, currently small book marketing
+              practice run by Timothy Gabriel and Sue Strachan. We are not
+              presenting ourselves as a large agency, and we don't have a
+              catalogue of famous authors to put on this page.
+            </p>
+
+            <p>
+              What we can offer is direct involvement. When an author replies
+              to one of our emails, the conversation is with a person who has
+              taken the time to understand why we contacted them and what
+              caught our attention about their work.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section id="contact">
+      <div class="page">
+        <div class="section-inner closing">
+          <div class="closing-content">
+
+            <div class="section-label">Start with an email</div>
+
+            <h2>
+              If you'd like to talk about your book, write to either of us.
+            </h2>
+
+            <p class="closing-copy">
+              Send the book title and a sentence or two about what you'd
+              like help with. If there is a sensible way for us to help,
+              we'll explain what we have in mind and send a proposal
+              afterward.
+            </p>
+
+            <div class="closing-emails">
+              <!-- Replace with real email addresses -->
+              <a href="mailto:TIMOTHY_EMAIL_HERE">
+                Timothy — TIMOTHY_EMAIL_HERE
+              </a>
+
+              <a href="mailto:SUE_EMAIL_HERE">
+                Sue — SUE_EMAIL_HERE
+              </a>
+            </div>
+
+            <p class="personal-note">
+              Every message is read personally.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="page">
+      <div class="footer-inner">
+        <span>Gabriel &amp; Strachan</span>
+        <span>Independent book marketing practice</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      Small enhancement only:
+      smooth navigation and a subtle reveal as sections enter the viewport.
+      No external scripts or tracking are required.
+    */
+
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08
+      }
+    );
+
+    sections.forEach(section => {
+      section.style.opacity = "0";
+      section.style.transform = "translateY(14px)";
+      section.style.transition =
+        "opacity 700ms ease, transform 700ms ease";
+      observer.observe(section);
+    });
+
+    /*
+      Keep the first hero section immediately visible.
+    */
+    const firstSection = document.querySelector("main > section");
+    if (firstSection) {
+      firstSection.style.opacity = "1";
+      firstSection.style.transform = "translateY(0)";
+    }
+  </script>
+
+</body>
+</html>
+```
